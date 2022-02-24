@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.io import loadmat
 
-points = loadmat("pi_coordinates.mat")['z'].T[0]
+#points = loadmat("pi_coordinates.mat")['z'].T[0]
+points = np.array([1, 1j]).dot(np.loadtxt(open("triag.csv", "rb"), delimiter=",").T)
+points = (points.real + 1j * points.imag)
+plt.show()
 N = len(points)
 T = np.linspace(0,2*pi,1000)
 
@@ -46,5 +49,5 @@ def animate(t):
     return [curve] + circle + line
 
 anim = FuncAnimation(fig,animate,frames=T,interval=15,repeat=True,blit=True)
-anim.save("Pi.mp4",writer="ffmpeg")
+#anim.save("Pi.mp4",writer="ffmpeg")
 plt.show()
