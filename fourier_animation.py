@@ -3,9 +3,10 @@ from numpy import pi
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.io import loadmat
+from sys import argv
 
 #points = loadmat("pi_coordinates.mat")['z'].T[0]
-points = np.array([1, 1j]).dot(np.loadtxt(open("triag.csv", "rb"), delimiter=",").T)
+points = np.array([1, 1j]).dot(np.loadtxt(open(argv[1], "rb"), delimiter=",").T)
 points = (points.real + 1j * points.imag)
 plt.show()
 N = len(points)
